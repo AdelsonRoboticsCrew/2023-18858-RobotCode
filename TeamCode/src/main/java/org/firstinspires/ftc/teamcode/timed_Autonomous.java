@@ -68,10 +68,10 @@ public class timed_Autonomous extends OpMode
         }
         while(runtime.seconds() < 8.0 )
         {
-            frontLeft.setPower(0.75);
-            frontRight.setPower(0.75);
-            backLeft.setPower(0.75);
-            backRight.setPower(0.75);
+            frontLeft.setPower(-0.75);
+            frontRight.setPower(-0.75);
+            backLeft.setPower(-0.75);
+            backRight.setPower(-0.75);
         }
 
 
