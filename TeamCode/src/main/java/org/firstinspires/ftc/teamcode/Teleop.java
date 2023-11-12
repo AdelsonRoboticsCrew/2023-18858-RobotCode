@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import class DriveBase;
+
 
 
 
@@ -18,6 +18,8 @@ public class Teleop extends OpMode{
     DcMotor leftBack;
     DcMotor rightFront;
     DcMotor rightBack;
+    DcMotor armLift;
+    DcMotor armTurn;
 
     @Override
     public void init(){
@@ -26,12 +28,17 @@ public class Teleop extends OpMode{
         leftFront = hardwareMap.get(DcMotor.class, "left front");
         rightBack = hardwareMap.get(DcMotor.class, "right back");
         rightFront = hardwareMap.get(DcMotor.class, "right front");
+        armLift = hardwareMap.get(DcMotor.class, "arm lift");
+        armTurn = hardwareMap.get(DcMotor.class, "arm turn");
 
         //set the directions for each motor -- i recommend doing this after you have tested the drivebase
-        leftBack.setDirection(DcMotor.Direction.FORWARD);
-        leftFront.setDirection(DcMotor.Direction.FORWARD);
+        leftBack.setDirection(DcMotor.Direction.REVERSE);
+        leftFront.setDirection(DcMotor.Direction.REVERSE);
         rightBack.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.FORWARD);
+        armLift.setDirection(DcMotor.Direction.FORWARD);
+        armTurn.setDirection(DcMotor.Direction.FORWARD);
+
 
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
@@ -70,6 +77,25 @@ public class Teleop extends OpMode{
         leftBack.setPower(lbPow);
         rightFront.setPower(rfPow);
         rightBack.setPower(rbPow);
+
+        if(!gamepad2.b && !gamepad1.y){
+            armLift.setPower(0);
+        }
+        while(gamepad1.b){
+            armLift.setPower(1);
+        }
+        while(gamepad1.y){
+            armLift.setPower(-1);
+        }
+        if(!gamepad1.x && !gamepad1.y){
+            armTurn.setPower(0);
+        }
+        while(gamepad1.x){
+            armTurn.setPower(1);
+        }
+        while(gamepad1.a){
+            armTurn.setPower(-1);
+        }
 
     }
 
