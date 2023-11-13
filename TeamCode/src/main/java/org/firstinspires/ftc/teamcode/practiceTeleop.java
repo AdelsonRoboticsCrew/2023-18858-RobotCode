@@ -3,6 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="Practice Teleop", group="Robot")
@@ -13,6 +14,7 @@ public class practiceTeleop extends OpMode
   private DcMotor frontRight;
   private DcMotor backLeft;
   private DcMotor backRight;
+  private Servo claw;
 
 
 
@@ -30,6 +32,10 @@ public class practiceTeleop extends OpMode
         frontRight.setDirection(DcMotor.Direction.FORWARD);
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.FORWARD);
+
+        claw = hardwareMap.get(Servo.class, "Claw");
+
+        claw.setDirection(Servo.Direction.FORWARD);
     }
 
     @Override
@@ -66,6 +72,19 @@ public class practiceTeleop extends OpMode
         frontRight.setPower(frontRightPower);
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
+
+
+         if(gamepad1.right_bumper)
+         {
+            claw.setPosition(0.8);
+         }
+
+         if(gamepad1.left_bumper);
+        {
+            claw.setPosition(0.0);
+        }
+
+
 
 
 
