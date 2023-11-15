@@ -21,6 +21,10 @@ public class Teleop extends OpMode{
     DcMotor armLift;
     DcMotor armTurn;
 
+    Servo claw;
+
+    boolean triggerPressed = false;
+
     @Override
     public void init(){
         telemetry.addData("Status", "Initialized");
@@ -30,15 +34,17 @@ public class Teleop extends OpMode{
         rightFront = hardwareMap.get(DcMotor.class, "right front");
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
+        claw = hardwareMap.get(Servo.class, "claw");
 
-        //set the directions for each motor -- i recommend doing this after you have tested the drivebase
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         rightBack.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         armLift.setDirection(DcMotor.Direction.FORWARD);
         armTurn.setDirection(DcMotor.Direction.FORWARD);
+        claw.setDirection(Servo.Direction.FORWARD);
 
+        setMotorFloatAndZero();
 
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
@@ -78,7 +84,7 @@ public class Teleop extends OpMode{
         rightFront.setPower(rfPow);
         rightBack.setPower(rbPow);
 
-        if(!gamepad2.b && !gamepad1.y){
+        if(!gamepad1.b && !gamepad1.y){
             armLift.setPower(0);
         }
         while(gamepad1.b){
@@ -97,10 +103,28 @@ public class Teleop extends OpMode{
             armTurn.setPower(-1);
         }
 
+        if(gamepad1.right_bumper && !triggerPressed){
+            claw.setPosition(0.8);
+            triggerPressed = true;
+        }
+        if(gamepad1.right_bumper && triggerPressed){
+            claw.setPosition(0);
+            triggerPressed = false;
+        }
+
     }
 
     @Override
     public void stop(){
 
+    }
+
+    public void setMotorFloatAndZero(){
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        armLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armTurn.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 }
