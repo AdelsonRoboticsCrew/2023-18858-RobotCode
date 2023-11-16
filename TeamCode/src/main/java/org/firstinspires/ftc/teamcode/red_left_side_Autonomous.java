@@ -2,13 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 @Autonomous(name="practice autonomous", group="Robot")
-public class timed_Autonomous extends OpMode
+public class red_left_side_Autonomous extends OpMode
 {
     private DcMotor frontLeft;
     private DcMotor frontRight;
@@ -32,9 +30,6 @@ public class timed_Autonomous extends OpMode
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
 
-
-
-
     }
 
     @Override
@@ -52,29 +47,33 @@ public class timed_Autonomous extends OpMode
     @Override
     public void loop()
     {
-        while(runtime.seconds() < 3.0 )
+        while(runtime.seconds() < 2.0 )
         {
             frontLeft.setPower(0.75);
             frontRight.setPower(0.75);
             backLeft.setPower(0.75);
             backRight.setPower(0.75);
         }
-        while(runtime.seconds() < 5.0 )
+        while(runtime.seconds() < 7.0 )
         {
-            frontLeft.setPower(0.75);
-            frontRight.setPower(-0.75);
-            backLeft.setPower(-0.75);
-            backRight.setPower(0.75);
+            frontLeft.setPower(-0.75);
+            frontRight.setPower(0.75);
+            backLeft.setPower(0.75);
+            backRight.setPower(-0.75);
         }
-        while(runtime.seconds() < 8.0 )
+        while(runtime.seconds() < 9.0 )
         {
             frontLeft.setPower(-0.75);
             frontRight.setPower(-0.75);
             backLeft.setPower(-0.75);
             backRight.setPower(-0.75);
         }
-
-
+        while(runtime.seconds() < 11.0 )
+        {
+            frontLeft.setPower(-0.75);
+            frontRight.setPower(0.75);
+            backLeft.setPower(0.75);
+            backRight.setPower(-0.75);
+        }
     }
 }
-
