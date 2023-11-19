@@ -37,35 +37,20 @@ public class red_left_side_Autonomous extends LinearOpMode
                 frontRight.setPower(0.75);
                 backLeft.setPower(0.75);
                 backRight.setPower(0.75);
-            } else {
-                frontLeft.setPower(0);
-                frontRight.setPower(0);
-                backLeft.setPower(0);
-                backRight.setPower(0);
             }
-            if (runtime.seconds() < 7.0) {
+            else if (runtime.seconds() < 7.0 && runtime.seconds() >= 2.0) {
                 frontLeft.setPower(-0.75);
                 frontRight.setPower(0.75);
                 backLeft.setPower(0.75);
                 backRight.setPower(-0.75);
-            } else {
-                frontLeft.setPower(0);
-                frontRight.setPower(0);
-                backLeft.setPower(0);
-                backRight.setPower(0);
             }
-            if (runtime.seconds() < 9.0) {
+            else if (runtime.seconds() < 9.0 && runtime.seconds() >= 7.0) {
                 frontLeft.setPower(-0.75);
                 frontRight.setPower(-0.75);
                 backLeft.setPower(-0.75);
                 backRight.setPower(-0.75);
-            } else {
-                frontLeft.setPower(0);
-                frontRight.setPower(0);
-                backLeft.setPower(0);
-                backRight.setPower(0);
             }
-            if (runtime.seconds() < 11.0) {
+            else if (runtime.seconds() < 11.0 && runtime.seconds() >= 9.0) {
                 frontLeft.setPower(-0.75);
                 frontRight.setPower(0.75);
                 backLeft.setPower(0.75);
@@ -75,7 +60,6 @@ public class red_left_side_Autonomous extends LinearOpMode
                 frontRight.setPower(0);
                 backLeft.setPower(0);
                 backRight.setPower(0);
-
             }
         }
         sleep(1000);
