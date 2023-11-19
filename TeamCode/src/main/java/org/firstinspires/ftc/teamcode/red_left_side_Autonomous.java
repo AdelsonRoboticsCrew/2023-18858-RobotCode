@@ -2,11 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
 @Autonomous(name="red left side Autonomous", group="Robot")
-public class red_left_side_Autonomous extends OpMode
+public class red_left_side_Autonomous extends LinearOpMode
 {
     private DcMotor frontLeft;
     private DcMotor frontRight;
@@ -15,7 +15,7 @@ public class red_left_side_Autonomous extends OpMode
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
-    public void init()
+    public void runOpMode()
     {
         telemetry.addLine("Status Initialized");
 
@@ -30,50 +30,55 @@ public class red_left_side_Autonomous extends OpMode
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
 
-    }
+        waitForStart();
+        while(opModeIsActive()) {
+            if (runtime.seconds() < 2.0) {
+                frontLeft.setPower(0.75);
+                frontRight.setPower(0.75);
+                backLeft.setPower(0.75);
+                backRight.setPower(0.75);
+            } else {
+                frontLeft.setPower(0);
+                frontRight.setPower(0);
+                backLeft.setPower(0);
+                backRight.setPower(0);
+            }
+            if (runtime.seconds() < 7.0) {
+                frontLeft.setPower(-0.75);
+                frontRight.setPower(0.75);
+                backLeft.setPower(0.75);
+                backRight.setPower(-0.75);
+            } else {
+                frontLeft.setPower(0);
+                frontRight.setPower(0);
+                backLeft.setPower(0);
+                backRight.setPower(0);
+            }
+            if (runtime.seconds() < 9.0) {
+                frontLeft.setPower(-0.75);
+                frontRight.setPower(-0.75);
+                backLeft.setPower(-0.75);
+                backRight.setPower(-0.75);
+            } else {
+                frontLeft.setPower(0);
+                frontRight.setPower(0);
+                backLeft.setPower(0);
+                backRight.setPower(0);
+            }
+            if (runtime.seconds() < 11.0) {
+                frontLeft.setPower(-0.75);
+                frontRight.setPower(0.75);
+                backLeft.setPower(0.75);
+                backRight.setPower(-0.75);
+            } else {
+                frontLeft.setPower(0);
+                frontRight.setPower(0);
+                backLeft.setPower(0);
+                backRight.setPower(0);
 
-    @Override
-    public void init_loop()
-    {
-
-    }
-
-    @Override
-    public void start()
-    {
-        runtime.reset();
-    }
-
-    @Override
-    public void loop()
-    {
-        if(runtime.seconds() < 2.0 )
-        {
-            frontLeft.setPower(0.75);
-            frontRight.setPower(0.75);
-            backLeft.setPower(0.75);
-            backRight.setPower(0.75);
+            }
         }
-        else if(runtime.seconds() < 7.0 )
-        {
-            frontLeft.setPower(-0.75);
-            frontRight.setPower(0.75);
-            backLeft.setPower(0.75);
-            backRight.setPower(-0.75);
-        }
-        else if(runtime.seconds() < 9.0 )
-        {
-            frontLeft.setPower(-0.75);
-            frontRight.setPower(-0.75);
-            backLeft.setPower(-0.75);
-            backRight.setPower(-0.75);
-        }
-        else if(runtime.seconds() < 11.0 )
-        {
-            frontLeft.setPower(-0.75);
-            frontRight.setPower(0.75);
-            backLeft.setPower(0.75);
-            backRight.setPower(-0.75);
-        }
+        sleep(1000);
+        stop();
     }
 }
