@@ -34,7 +34,7 @@ public class Teleop extends OpMode{
         rightFront = hardwareMap.get(DcMotor.class, "right front");
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
-        claw = hardwareMap.get(Servo.class, "claw");
+        //claw = hardwareMap.get(Servo.class, "claw");
 
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
@@ -42,7 +42,7 @@ public class Teleop extends OpMode{
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         armLift.setDirection(DcMotor.Direction.FORWARD);
         armTurn.setDirection(DcMotor.Direction.FORWARD);
-        claw.setDirection(Servo.Direction.FORWARD);
+        //claw.setDirection(Servo.Direction.FORWARD);
 
         setMotorFloatAndZero();
 
@@ -84,25 +84,43 @@ public class Teleop extends OpMode{
         rightFront.setPower(rfPow);
         rightBack.setPower(rbPow);
 
-        if(!gamepad1.b && !gamepad1.y){
+        if(gamepad1.dpad_up){
+            armLift.setPower(.75);
+        }
+        if(gamepad1.b){
             armLift.setPower(0);
         }
-        while(gamepad1.b){
-            armLift.setPower(1);
+        if(gamepad1.dpad_down){
+            armLift.setPower(-.75);
         }
-        while(gamepad1.y){
-            armLift.setPower(-1);
-        }
-        if(!gamepad1.x && !gamepad1.y){
-            armTurn.setPower(0);
-        }
-        while(gamepad1.x){
+        if(gamepad1.dpad_right){
             armTurn.setPower(1);
         }
-        while(gamepad1.a){
-            armTurn.setPower(-1);
+        if(gamepad1.a){
+            armTurn.setPower(0);
         }
-
+        if(gamepad1.dpad_left){
+            armTurn.setPower(-.75);
+        }
+        /*if(!gamepad1.dpad_up && !gamepad1.dpad_down){
+            armLift.setPower(0);
+        }
+        while(gamepad1.dpad_up){
+            armLift.setPower(1);
+        }
+        while(gamepad1.dpad_down){
+            armLift.setPower(-1);
+        }
+        if(!gamepad1.dpad_right && !gamepad1.dpad_left){
+            armTurn.setPower(0);
+        }
+        while(gamepad1.dpad_right){
+            armTurn.setPower(1);
+        }
+        while(gamepad1.dpad_left){
+            armTurn.setPower(-1);
+        } */
+/*
         if(gamepad1.right_bumper && !triggerPressed){
             claw.setPosition(0.8);
             triggerPressed = true;
@@ -111,7 +129,7 @@ public class Teleop extends OpMode{
             claw.setPosition(0);
             triggerPressed = false;
         }
-
+*/
     }
 
     @Override
