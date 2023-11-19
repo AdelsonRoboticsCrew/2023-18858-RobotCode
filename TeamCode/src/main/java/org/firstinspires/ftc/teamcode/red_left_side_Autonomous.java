@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
-@Autonomous(name="practice autonomous", group="Robot")
+@Autonomous(name="red left side Autonomous", group="Robot")
 public class red_left_side_Autonomous extends OpMode
 {
     private DcMotor frontLeft;
@@ -47,28 +47,28 @@ public class red_left_side_Autonomous extends OpMode
     @Override
     public void loop()
     {
-        while(runtime.seconds() < 2.0 )
+        if(runtime.seconds() < 2.0 )
         {
             frontLeft.setPower(0.75);
             frontRight.setPower(0.75);
             backLeft.setPower(0.75);
             backRight.setPower(0.75);
         }
-        while(runtime.seconds() < 7.0 )
+        else if(runtime.seconds() < 7.0 )
         {
             frontLeft.setPower(-0.75);
             frontRight.setPower(0.75);
             backLeft.setPower(0.75);
             backRight.setPower(-0.75);
         }
-        while(runtime.seconds() < 9.0 )
+        else if(runtime.seconds() < 9.0 )
         {
             frontLeft.setPower(-0.75);
             frontRight.setPower(-0.75);
             backLeft.setPower(-0.75);
             backRight.setPower(-0.75);
         }
-        while(runtime.seconds() < 11.0 )
+        else if(runtime.seconds() < 11.0 )
         {
             frontLeft.setPower(-0.75);
             frontRight.setPower(0.75);
