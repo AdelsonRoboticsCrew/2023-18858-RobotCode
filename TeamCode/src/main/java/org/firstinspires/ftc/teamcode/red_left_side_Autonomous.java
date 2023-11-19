@@ -29,22 +29,23 @@ public class red_left_side_Autonomous extends LinearOpMode
         frontRight.setDirection(DcMotor.Direction.FORWARD);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
+        runtime.reset();
 
         waitForStart();
         while(opModeIsActive()) {
-            if (runtime.seconds() < 2.0) {
+            if (runtime.seconds() < 1.65) { //add a tiny bit more time, but it's basically good
                 frontLeft.setPower(0.75);
                 frontRight.setPower(0.75);
                 backLeft.setPower(0.75);
                 backRight.setPower(0.75);
             }
-            else if (runtime.seconds() < 7.0 && runtime.seconds() >= 2.0) {
-                frontLeft.setPower(-0.75);
-                frontRight.setPower(0.75);
-                backLeft.setPower(0.75);
-                backRight.setPower(-0.75);
+            else if (runtime.seconds() < 6.0 && runtime.seconds() >= 1.65) {
+                frontLeft.setPower(0.75);
+                frontRight.setPower(-0.75);
+                backLeft.setPower(-0.75);
+                backRight.setPower(0.75);
             }
-            else if (runtime.seconds() < 9.0 && runtime.seconds() >= 7.0) {
+            else if (runtime.seconds() < 9.0 && runtime.seconds() >= 6.0) {
                 frontLeft.setPower(-0.75);
                 frontRight.setPower(-0.75);
                 backLeft.setPower(-0.75);
