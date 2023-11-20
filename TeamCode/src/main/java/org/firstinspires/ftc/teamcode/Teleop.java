@@ -94,32 +94,15 @@ public class Teleop extends OpMode{
             armLift.setPower(-.75);
         }
         if(gamepad1.dpad_right){
-            armTurn.setPower(1);
+            armTurn.setPower(-.5);
         }
         if(gamepad1.a){
             armTurn.setPower(0);
         }
         if(gamepad1.dpad_left){
-            armTurn.setPower(-.75);
+            armTurn.setPower(.5);
         }
-        /*if(!gamepad1.dpad_up && !gamepad1.dpad_down){
-            armLift.setPower(0);
-        }
-        while(gamepad1.dpad_up){
-            armLift.setPower(1);
-        }
-        while(gamepad1.dpad_down){
-            armLift.setPower(-1);
-        }
-        if(!gamepad1.dpad_right && !gamepad1.dpad_left){
-            armTurn.setPower(0);
-        }
-        while(gamepad1.dpad_right){
-            armTurn.setPower(1);
-        }
-        while(gamepad1.dpad_left){
-            armTurn.setPower(-1);
-        } */
+
 /*
         if(gamepad1.right_bumper && !triggerPressed){
             claw.setPosition(0.8);
