@@ -23,7 +23,7 @@ public class Teleop extends OpMode{
 
     Servo claw;
 
-    boolean triggerPressed = false;
+
 
     @Override
     public void init(){
@@ -34,7 +34,7 @@ public class Teleop extends OpMode{
         rightFront = hardwareMap.get(DcMotor.class, "right front");
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
-        //claw = hardwareMap.get(Servo.class, "claw");
+        claw = hardwareMap.get(Servo.class, "claw");
 
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
@@ -42,7 +42,7 @@ public class Teleop extends OpMode{
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         armLift.setDirection(DcMotor.Direction.FORWARD);
         armTurn.setDirection(DcMotor.Direction.FORWARD);
-        //claw.setDirection(Servo.Direction.FORWARD);
+        claw.setDirection(Servo.Direction.FORWARD);
 
         setMotorFloatAndZero();
 
@@ -103,16 +103,14 @@ public class Teleop extends OpMode{
             armTurn.setPower(.5);
         }
 
-/*
-        if(gamepad1.right_bumper && !triggerPressed){
-            claw.setPosition(0.8);
-            triggerPressed = true;
+
+        if(gamepad1.right_bumper){
+            claw.setPosition(0.4);
         }
-        if(gamepad1.right_bumper && triggerPressed){
+        if(gamepad1.left_bumper){
             claw.setPosition(0);
-            triggerPressed = false;
         }
-*/
+
     }
 
     @Override
