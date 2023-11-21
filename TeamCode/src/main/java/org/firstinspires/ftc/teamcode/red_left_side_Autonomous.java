@@ -14,10 +14,11 @@ public class red_left_side_Autonomous extends LinearOpMode
     private DcMotor backRight;
     private ElapsedTime runtime = new ElapsedTime();
 
+
     @Override
     public void runOpMode()
     {
-        telemetry.addLine("Status Initialized");
+        telemetry.addData("runtime :" , runtime);
 
         frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
@@ -33,34 +34,40 @@ public class red_left_side_Autonomous extends LinearOpMode
 
         waitForStart();
         while(opModeIsActive()) {
+            telemetry.addData("runtime :" , runtime);
             if (runtime.seconds() < 1.65) { //add a tiny bit more time, but it's basically good
                 frontLeft.setPower(0.75);
                 frontRight.setPower(0.75);
                 backLeft.setPower(0.75);
                 backRight.setPower(0.75);
+
             }
             else if (runtime.seconds() < 6.0 && runtime.seconds() >= 1.65) {
                 frontLeft.setPower(0.75);
                 frontRight.setPower(-0.75);
                 backLeft.setPower(-0.75);
                 backRight.setPower(0.75);
+
             }
             else if (runtime.seconds() < 9.0 && runtime.seconds() >= 6.0) {
                 frontLeft.setPower(-0.75);
                 frontRight.setPower(-0.75);
                 backLeft.setPower(-0.75);
                 backRight.setPower(-0.75);
+
             }
             else if (runtime.seconds() < 11.0 && runtime.seconds() >= 9.0) {
                 frontLeft.setPower(-0.75);
                 frontRight.setPower(0.75);
                 backLeft.setPower(0.75);
                 backRight.setPower(-0.75);
+
             } else {
                 frontLeft.setPower(0);
                 frontRight.setPower(0);
                 backLeft.setPower(0);
                 backRight.setPower(0);
+
             }
         }
         sleep(1000);
