@@ -34,16 +34,19 @@ public class Teleop extends OpMode{
         rightFront = hardwareMap.get(DcMotor.class, "right front");
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
-        //claw = hardwareMap.get(Servo.class, "claw");
+        claw = hardwareMap.get(Servo.class, "claw");
 
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         rightBack.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         armLift.setDirection(DcMotor.Direction.FORWARD);
-        armTurn.setDirection(DcMotor.Direction.FORWARD);
-        //claw.setDirection(Servo.Direction.FORWARD);
+        armTurn.setDirection(DcMotor.Direction.REVERSE);
 
+        //armLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armTurn.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armTurn.setTargetPosition(0);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         setMotorFloatAndZero();
 
         telemetry.addData("Status", "Ready to run");
@@ -93,26 +96,25 @@ public class Teleop extends OpMode{
         if(gamepad1.dpad_down){
             armLift.setPower(-.75);
         }
-        if(gamepad1.dpad_right){
-            armTurn.setPower(-.5);
+        if(gamepad1.y){
+            armTurn.setTargetPosition(150);
+            armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armTurn.setPower(1);
         }
-        if(gamepad1.a){
+        if(gamepad1.x){
+            armTurn.setTargetPosition(0);
+            armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armTurn.setPower(0.2);
+        }
+        if (armTurn.getCurrentPosition() == 0){
             armTurn.setPower(0);
         }
-        if(gamepad1.dpad_left){
-            armTurn.setPower(.5);
+        if(gamepad1.right_bumper){
+            claw.setPosition(1.4);
         }
-
-/*
-        if(gamepad1.right_bumper && !triggerPressed){
-            claw.setPosition(0.8);
-            triggerPressed = true;
+        if(gamepad1.left_bumper){
+            claw.setPosition(1);
         }
-        if(gamepad1.right_bumper && triggerPressed){
-            claw.setPosition(0);
-            triggerPressed = false;
-        }
-*/
     }
 
     @Override
