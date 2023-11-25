@@ -35,11 +35,11 @@ public class red_left_side_Autonomous extends LinearOpMode
         waitForStart();
         while(opModeIsActive()) {
             telemetry.addData("runtime :" , runtime);
-            if (runtime.seconds() < 1.65) { //add a tiny bit more time, but it's basically good
-                frontLeft.setPower(0.75);
-                frontRight.setPower(0.75);
-                backLeft.setPower(0.75);
-                backRight.setPower(0.75);
+            if (runtime.seconds() < 1.66) { //add a tiny bit more time, but it's basically good
+                frontLeft.setPower(0.70);
+                frontRight.setPower(0.70);
+                backLeft.setPower(0.70);
+                backRight.setPower(0.70);
 
             }
             else if (runtime.seconds() < 6.0 && runtime.seconds() >= 1.65) {
