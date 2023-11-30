@@ -115,23 +115,20 @@ public class Teleop extends OpMode{
         if(gamepad1.b){
             armLift.setPower(0);
         }
-        if(gamepad1.dpad_down){
-            armLift.setPower(-.75);
-        }
         if(gamepad1.y){
-            armTurn.setTargetPosition(150);
+            armTurn.setTargetPosition(130);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armTurn.setPower(0.5);
+            armTurn.setPower(0.4);
         }
         if(gamepad1.x){
-            armTurn.setTargetPosition(20);
+            armTurn.setTargetPosition(30);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armTurn.setPower(0.5);
+            armTurn.setPower(0.15);
         }
         if(gamepad1.a){
             armTurn.setTargetPosition(100);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armTurn.setPower(0.5);
+            armTurn.setPower(0.4);
         }
         if(armTurn.getCurrentPosition() == 0){
             armTurn.setPower(0);
@@ -140,10 +137,10 @@ public class Teleop extends OpMode{
             armLift.setPower(0);
         }
         if(gamepad1.right_bumper){
-            claw.setPosition(1.4);
+            claw.setPosition(1.2);
         }
         if(gamepad1.left_bumper){
-            claw.setPosition(1);
+            claw.setPosition(.5);
         }
 
         telemetry.update();
