@@ -1,6 +1,4 @@
-package org.firstinspires.ftc.teamcode.robotStuff;
-
-import com.qualcomm.robotcore.hardware.HardwareMap;
+package org.firstinspires.ftc.teamcode.robotutil;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
