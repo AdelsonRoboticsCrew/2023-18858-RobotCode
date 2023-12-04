@@ -4,7 +4,7 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class MeepMeepTesting {
+public class MeepMeepBlueLeft {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(600);
 
@@ -12,11 +12,11 @@ public class MeepMeepTesting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-35.5, -61, Math.toRadians(90)))
-                                .forward(27)
-                                .strafeRight(54)
-                                .turn(Math.toRadians(-90))
-                                .forward(30)
+                        drive.trajectorySequenceBuilder(new Pose2d(-34, 56, Math.toRadians(270)))
+                                .forward(20)
+                                .strafeLeft(50)
+                                .turn(Math.toRadians(90))
+                                .forward(25)
                                 .build()
                 );
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
