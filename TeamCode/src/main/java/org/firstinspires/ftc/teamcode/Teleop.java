@@ -89,7 +89,8 @@ public class Teleop extends OpMode{
         rightFront.setPower(rfPow);
         rightBack.setPower(rbPow);
 
-        telemetry.addData("Position", armLift.getCurrentPosition());
+        telemetry.addData("Lift Position: ", armLift.getCurrentPosition());
+        telemetry.addData("Turn Position: ", armTurn.getCurrentPosition());
 
         if(gamepad1.dpad_up){
             armLift.setTargetPosition(3620);
@@ -143,6 +144,12 @@ public class Teleop extends OpMode{
         }
         if(gamepad1.left_bumper){
             claw.setPosition(.5);
+        }
+
+        if(gamepad1.right_stick_button){
+            armTurn.setTargetPosition(160);
+            armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armTurn.setPower(1);
         }
 
         telemetry.update();
