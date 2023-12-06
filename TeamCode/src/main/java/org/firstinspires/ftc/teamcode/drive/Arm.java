@@ -25,8 +25,7 @@ public class Arm {
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
         armLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armLift.setTargetPosition(0);
-        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        claw.scaleRange(.5, .655);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);;
         claw.setPosition(0.655);
         armTurn.setDirection(DcMotorSimple.Direction.REVERSE);
         armTurn.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
