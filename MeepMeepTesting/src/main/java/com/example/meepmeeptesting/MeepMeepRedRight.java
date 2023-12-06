@@ -16,6 +16,11 @@ public class MeepMeepRedRight {
                                 .forward(25)
                                 .strafeRight(33)
                                 .turn(Math.toRadians(-90))
+                                .forward(4)
+                                .back(4)
+                                .strafeLeft(24)
+                                .turn(Math.toRadians(180))
+                                .back(6)
                                 .build()
                 );
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
