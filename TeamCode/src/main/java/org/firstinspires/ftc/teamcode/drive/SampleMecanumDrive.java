@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.drive;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
+
 import androidx.annotation.NonNull;
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import com.acmerobotics.dashboard.config.Config;
@@ -118,7 +120,7 @@ public class SampleMecanumDrive extends MecanumDrive {
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();
 
-        // TODO: if desired, use setLocalizer() to change the localization method
+        // if desired, use setLocalizer() to change the localization method
         // setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap, lastTrackingEncPositions, lastTrackingEncVels));
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(
@@ -126,7 +128,27 @@ public class SampleMecanumDrive extends MecanumDrive {
                 lastEncPositions, lastEncVels, lastTrackingEncPositions, lastTrackingEncVels
         );
     }
+    public void drive(){
+        double drive = -gamepad1.left_stick_y;
+        double strafe = gamepad1.left_stick_x;
+        double turn = gamepad1.right_stick_x;
 
+        double lrPow = drive - strafe + turn;
+        double rrPow = drive + strafe - turn;
+        double lfPow = drive + strafe + turn;
+        double rfPow = drive - strafe - turn;
+        double divisor = Math.max(Math.max(lfPow, lrPow), Math.max(rfPow, rrPow));
+        if (divisor >= 0.7) {
+            lrPow /= divisor;
+            rrPow /= divisor;
+            lfPow /= divisor;
+            rfPow /= divisor;
+        }
+        leftFront.setPower(lfPow);
+        leftRear.setPower(lrPow);
+        rightFront.setPower(rfPow);
+        rightRear.setPower(rrPow);
+    }
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, VEL_CONSTRAINT, ACCEL_CONSTRAINT);
     }
