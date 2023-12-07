@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Arm {
     private DcMotor armLift;
     private DcMotor armTurn;
-    private Servo claw;
+    public Servo claw;
     private final int ARM_HEIGHT_PLACE_TALL = 3620;
     public final int ARM_HEIGHT_PLACE_MEDIUM = 1250;
     public final int ARM_HEIGHT_PLACE_SHORT = 600;
@@ -26,7 +26,7 @@ public class Arm {
         armLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armLift.setTargetPosition(0);
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        claw.scaleRange(.5, .655);
+        //claw.scaleRange(.5, .655);
         claw.setPosition(0.5);
         armTurn.setDirection(DcMotorSimple.Direction.REVERSE);
         armTurn.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

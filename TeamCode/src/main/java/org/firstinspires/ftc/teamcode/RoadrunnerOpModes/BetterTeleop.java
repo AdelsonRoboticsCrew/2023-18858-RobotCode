@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.RoadrunnerOpModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.drive.Arm;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
+@Disabled
 @TeleOp(name="Better Teleop", group="Robot")
 public class BetterTeleop extends OpMode {
     private SampleMecanumDrive robot;

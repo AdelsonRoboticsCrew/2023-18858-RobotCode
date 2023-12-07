@@ -77,6 +77,10 @@ public class Teleop extends OpMode {
             lfPow /= divisor;
             rfPow /= divisor;
         }
+        lbPow *= 0.7;
+        lfPow *= 0.7;
+        rbPow *= 0.7;
+        rfPow *= 0.7;
         leftFront.setPower(lfPow);
         leftBack.setPower(lbPow);
         rightFront.setPower(rfPow);
@@ -111,7 +115,7 @@ public class Teleop extends OpMode {
             armTurn.setPower(0.15);
         }
         if (gamepad1.y) {
-            armTurn.setTargetPosition(270);
+            armTurn.setTargetPosition(400);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.4);
         }

@@ -81,8 +81,11 @@ public class RedRight extends OpMode {
                 currentState = State.ARM_DROP;
                 break;
             case ARM_DROP:
-                arm.dropPixel();
-                arm.dropArm();
+                trajSeq = robot.trajectorySequenceBuilder(currentPose)
+                        .waitSeconds(1)
+                        .build();
+                robot.followTrajectorySequence(trajSeq);
+                arm.claw.setPosition(0.7);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(3)
                         .back(4)
@@ -94,6 +97,7 @@ public class RedRight extends OpMode {
                 currentState = State.PARK;
                 break;
             case PARK:
+                arm.dropArm();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .strafeLeft(28)
                         .turn(Math.toRadians(180))
