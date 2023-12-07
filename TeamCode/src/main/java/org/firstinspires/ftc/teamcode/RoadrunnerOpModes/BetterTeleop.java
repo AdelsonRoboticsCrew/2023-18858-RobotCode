@@ -57,6 +57,9 @@ public class BetterTeleop extends OpMode {
         if (gamepad1.left_bumper) {
             arm.holdPixel();
         }
+        if(gamepad1.right_stick_button){
+            arm.hang();
+        }
         //telemetry.update(); nothing to update
     }
 

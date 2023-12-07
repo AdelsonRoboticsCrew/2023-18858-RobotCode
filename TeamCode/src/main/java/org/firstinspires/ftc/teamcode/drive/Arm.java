@@ -15,7 +15,7 @@ public class Arm {
     private final int ARM_DRIVE = 80;
     private final int ARM_TURN_PLACE = 210;
     public final int ARM_TURN_PLACE_HIGHER = 270;
-    public final int ARM_HANG = 320;
+    public final int ARM_HANG = 400;
     public Arm(HardwareMap hardwareMap){
         init(hardwareMap);
     }
@@ -120,5 +120,13 @@ public class Arm {
         armTurn.setTargetPosition(ARM_TURN_PLACE);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armTurn.setPower(0.5);
+    }
+    public void hang(){
+        armTurn.setTargetPosition(ARM_HANG);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armTurn.setPower(0.5);
+        armLift.setTargetPosition(ARM_HEIGHT_PLACE_TALL);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armLift.setPower(0.5);
     }
 }
