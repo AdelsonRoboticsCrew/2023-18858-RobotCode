@@ -8,14 +8,14 @@ public class Arm {
     private DcMotor armTurn;
     private Servo claw;
     private final int ARM_HEIGHT_PLACE_TALL = 3620;
-    //public final int ARM_HEIGHT_PLACE_MEDIUM = 1250;
-    //public final int ARM_HEIGHT_PLACE_SHORT = 600;
+    public final int ARM_HEIGHT_PLACE_MEDIUM = 1250;
+    public final int ARM_HEIGHT_PLACE_SHORT = 600;
     private double SERVO_HOLD = 0.5;
     private final double SERVO_DROP = 0.655;
     private final int ARM_DRIVE = 80;
     private final int ARM_TURN_PLACE = 210;
-    //public final int ARM_TURN_PLACE_HIGHER = 270;
-    //public final int ARM_HANG = 320;
+    public final int ARM_TURN_PLACE_HIGHER = 270;
+    public final int ARM_HANG = 320;
     public Arm(HardwareMap hardwareMap){
         init(hardwareMap);
     }
@@ -45,7 +45,7 @@ public class Arm {
         armTurn.setPower(1);
     }
     public void dropPixel(){
-        this.claw.setPosition(SERVO_DROP);
+        claw.setPosition(SERVO_DROP);
     }
     public void raiseArmAuto(){
         armTurn.setTargetPosition(ARM_TURN_PLACE);
@@ -56,7 +56,7 @@ public class Arm {
         armLift.setPower(1);
     }
     public void dropArm(){
-        armLift.setTargetPosition(10);
+        armLift.setTargetPosition(0);
         armTurn.setTargetPosition(ARM_DRIVE);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -67,5 +67,58 @@ public class Arm {
         armTurn.setTargetPosition(0);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armTurn.setPower(1);
+        while(true){
+            if(armTurn.getCurrentPosition() == 0){
+                armTurn.setPower(0);
+                break;
+            }
+            break;
+        }
+    }
+    public void armLiftHigh(){
+        armLift.setTargetPosition(ARM_HEIGHT_PLACE_TALL);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armLift.setPower(1);
+    }
+    public void armLiftMed(){
+        armLift.setTargetPosition(ARM_HEIGHT_PLACE_MEDIUM);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armLift.setPower(1);
+    }
+    public void armLiftLow(){
+        armLift.setTargetPosition(ARM_HEIGHT_PLACE_SHORT);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armLift.setPower(1);
+    }
+    public void armLiftDown(){
+        armLift.setTargetPosition(0);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armLift.setPower(1);
+        while(true){
+            if(armLift.getCurrentPosition() == 0){
+                armLift.setPower(0);
+            }
+            break;
+        }
+    }
+    public void armTurnDown(){
+        armTurn.setTargetPosition(10);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armTurn.setPower(0.2);
+    }
+    public void armTurnPLaceHigh(){
+        armTurn.setTargetPosition(ARM_TURN_PLACE_HIGHER);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armTurn.setPower(0.5);
+    }
+    public void armDrive(){
+        armTurn.setTargetPosition(ARM_DRIVE);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armTurn.setPower(0.3);
+    }
+    public void armTurnPlace(){
+        armTurn.setTargetPosition(ARM_TURN_PLACE);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armTurn.setPower(0.5);
     }
 }

@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.drive.Arm;
 @Autonomous(group = "robot")
 public class RedLeft extends OpMode {
     private enum State{
-        TRAJECTORY_1,
+        //TRAJECTORY_1,
         ARM_PICK_UP,
         DRIVE_1,
         ARM_LIFT,
@@ -19,11 +19,11 @@ public class RedLeft extends OpMode {
         PARK,
         OFF
     }
-    public SampleMecanumDrive robot;
-    public Arm arm;
-    public State currentState;
-    public Pose2d currentPose;
-    public TrajectorySequence trajSeq;
+    private SampleMecanumDrive robot;
+    private Arm arm;
+    private State currentState;
+    private Pose2d currentPose;
+
     @Override
     public void init() {
         robot = new SampleMecanumDrive(hardwareMap);
@@ -49,7 +49,7 @@ public class RedLeft extends OpMode {
         switch (currentState){
             case ARM_PICK_UP:
                 arm.holdPixel();
-                trajSeq = robot.trajectorySequenceBuilder(currentPose)
+                TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(3)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
