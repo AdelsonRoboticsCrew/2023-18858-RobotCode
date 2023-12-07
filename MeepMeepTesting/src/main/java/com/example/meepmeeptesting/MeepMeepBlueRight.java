@@ -12,11 +12,17 @@ public class MeepMeepBlueRight {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(15, 56, Math.toRadians(270)))
-                                .forward(20)
-                                .strafeLeft(25)
+                        drive.trajectorySequenceBuilder(new Pose2d(11, 62, Math.toRadians(270)))
+                                .waitSeconds(3)
+                                .forward(25)
+                                .strafeLeft(33)
                                 .turn(Math.toRadians(90))
-                                .forward(6)
+                                .waitSeconds(3)
+                                .forward(4)
+                                .back(4)
+                                .strafeRight(28)
+                                .turn(Math.toRadians(-180))
+                                .back(6)
                                 .build()
                 );
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
