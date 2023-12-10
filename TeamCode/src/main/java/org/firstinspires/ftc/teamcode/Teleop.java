@@ -71,16 +71,16 @@ public class Teleop extends OpMode {
         double rfPow = drive - strafe - turn;
 
         double divisor = Math.max(Math.max(lfPow, lbPow), Math.max(rfPow, rbPow));
-        if (divisor >= 0.7) {
+        if (divisor >= 0.8) {
             lbPow /= divisor;
             rbPow /= divisor;
             lfPow /= divisor;
             rfPow /= divisor;
         }
-        lbPow *= 0.7;
-        lfPow *= 0.7;
-        rbPow *= 0.7;
-        rfPow *= 0.7;
+        lbPow *= 0.8;
+        lfPow *= 0.8;
+        rbPow *= 0.8;
+        rfPow *= 0.8;
         leftFront.setPower(lfPow);
         leftBack.setPower(lbPow);
         rightFront.setPower(rfPow);
@@ -115,7 +115,7 @@ public class Teleop extends OpMode {
             armTurn.setPower(0.15);
         }
         if (gamepad1.y) {
-            armTurn.setTargetPosition(400);
+            armTurn.setTargetPosition(420);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.4);
         }
@@ -125,7 +125,7 @@ public class Teleop extends OpMode {
             armTurn.setPower(0.15);
         }
         if (gamepad1.x) {
-            armTurn.setTargetPosition(210);
+            armTurn.setTargetPosition(220);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.4);
         }

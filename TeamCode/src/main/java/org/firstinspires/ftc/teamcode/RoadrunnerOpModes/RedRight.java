@@ -43,13 +43,13 @@ public class RedRight extends OpMode {
             case ARM_PICK_UP:
                 arm.holdPixel();
                 TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(3)
+                        .waitSeconds(0.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                telemetry.addData("debug 1", currentState);
                 currentState = State.DRIVE_1;
                 break;
             case DRIVE_1:
+                arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(25)
                         .strafeRight(33)
@@ -59,19 +59,18 @@ public class RedRight extends OpMode {
                 currentPose = new Pose2d(44, -37, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
-                telemetry.addData("debug 2", currentState);
-                currentState = State.ARM_LIFT;
+                currentState = State.FORWARD_1;
                 break;
-            case ARM_LIFT:
+            /*case ARM_LIFT:
                 arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(3)
+                        .waitSeconds(1.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                telemetry.addData("debug 3", currentState);
-                currentState = State.FORWARD_1;
+                currentState = State.FORWARD_1;*/
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
+                        .waitSeconds(2)
                         .forward(4)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
@@ -81,13 +80,9 @@ public class RedRight extends OpMode {
                 currentState = State.ARM_DROP;
                 break;
             case ARM_DROP:
-                trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(1)
-                        .build();
-                robot.followTrajectorySequence(trajSeq);
                 arm.claw.setPosition(0.7);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(3)
+                        .waitSeconds(1.5)
                         .back(4)
                         .build();
                 robot.followTrajectorySequence(trajSeq);

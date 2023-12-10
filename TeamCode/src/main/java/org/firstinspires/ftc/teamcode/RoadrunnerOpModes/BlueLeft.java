@@ -51,10 +51,10 @@ public class BlueLeft extends OpMode {
             case ARM_PICK_UP:
                 arm.holdPixel();
                 TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(3)
+                        .waitSeconds(0.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                telemetry.addData("debug 1", currentState);
+                //telemetry.addData("debug 1", currentState);
                 currentState = State.DRIVE_1;
                 break;
             case DRIVE_1:
@@ -67,17 +67,18 @@ public class BlueLeft extends OpMode {
                 currentPose = new Pose2d(44, 35, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
-                telemetry.addData("debug 2", currentState);
-                currentState = State.ARM_LIFT;
+                arm.raiseArmAuto();
+                //telemetry.addData("debug 2", currentState);
+                currentState = State.FORWARD_1;
                 break;
-            case ARM_LIFT:
+            /*case ARM_LIFT:
                 arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(3)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 telemetry.addData("debug 3", currentState);
-                currentState = State.FORWARD_1;
+                currentState = State.FORWARD_1;*/
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(4)
