@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.drive.Arm;
 
 @Autonomous(group = "robot")
 public class BlueRight extends OpMode {
-    private enum State {
+    private enum State{
         //TRAJECTORY_1,
         ARM_PICK_UP,
         DRIVE_1,
@@ -19,6 +19,7 @@ public class BlueRight extends OpMode {
         PARK,
         OFF
     }
+
     private SampleMecanumDrive robot;
     private Arm arm;
     private State currentState;
@@ -28,7 +29,7 @@ public class BlueRight extends OpMode {
     public void init() {
         robot = new SampleMecanumDrive(hardwareMap);
         arm = new Arm(hardwareMap);
-        currentPose = new Pose2d(11, 62, Math.toRadians(270));
+        currentPose = new Pose2d(-34, 62, Math.toRadians(270));
         robot.setPoseEstimate(currentPose);
         currentState = State.ARM_PICK_UP;
     }
@@ -57,52 +58,52 @@ public class BlueRight extends OpMode {
                 currentState = State.DRIVE_1;
                 break;
             case DRIVE_1:
-                arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .forward(25)
-                        .strafeLeft(33)
+                        .forward(24)
+                        .strafeLeft(78)
                         .turn(Math.toRadians(90))
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(44, 37, Math.toRadians(0));
+                currentPose = new Pose2d(44, 35, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
+                arm.raiseArmAuto();
                 //telemetry.addData("debug 2", currentState);
                 currentState = State.FORWARD_1;
                 break;
             /*case ARM_LIFT:
                 arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(1.5)
+                        .waitSeconds(3)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
+                telemetry.addData("debug 3", currentState);
                 currentState = State.FORWARD_1;*/
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(4)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(48, 37, Math.toRadians(0));
+                currentPose = new Pose2d(48, 35, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.ARM_DROP;
                 break;
             case ARM_DROP:
-                arm.claw.setPosition(0.7);
+                arm.dropPixel();
+                arm.dropArm();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(.5)
                         .back(4)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(44, 37, Math.toRadians(0));
+                currentPose = new Pose2d(44, 35, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.PARK;
                 break;
             case PARK:
-                arm.dropArm();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .strafeRight(28)
+                        .strafeRight(26)
                         .turn(Math.toRadians(-180))
                         .back(6)
                         .build();

@@ -52,8 +52,8 @@ public class Arm {
         armLift.setTargetPosition(ARM_HEIGHT_PLACE_TALL);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        armTurn.setPower(1);
-        armLift.setPower(1);
+        armTurn.setPower(0.7);
+        armLift.setPower(0.7);
     }
     public void dropArm(){
         armLift.setTargetPosition(0);
