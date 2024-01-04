@@ -38,11 +38,11 @@ public class Arm {
     public void holdPixel(){
         armTurn.setTargetPosition(10);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        armTurn.setPower(1);
+        armTurn.setPower(.65);
         claw.setPosition(SERVO_HOLD);
         armTurn.setTargetPosition(ARM_DRIVE);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        armTurn.setPower(1);
+        armTurn.setPower(.65);
     }
     public void dropPixel(){
         claw.setPosition(SERVO_DROP);
