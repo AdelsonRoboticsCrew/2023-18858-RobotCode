@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.drive.Arm;
 public class RedRight extends OpMode {
     private enum State {
         //TRAJECTORY_1, this is going to be used for camera stuff
+        ARM_LIFT_A ,
         ARM_PICK_UP,
         DRIVE_1,
         ARM_LIFT,
@@ -28,7 +29,7 @@ public class RedRight extends OpMode {
         arm = new Arm(hardwareMap);
         currentPose = new Pose2d(11, -62, Math.toRadians(90));
         robot.setPoseEstimate(currentPose);
-        currentState = State.ARM_PICK_UP;
+        currentState = State.ARM_LIFT_A;
     }
     @Override
     public void init_loop(){
@@ -40,9 +41,16 @@ public class RedRight extends OpMode {
     public void loop(){
         robot.update();
         switch (currentState){
-            case ARM_PICK_UP:
-                arm.holdPixel();
+            case ARM_LIFT_A:
+                arm.raiseArmForPixel();
                 TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
+                        .waitSeconds(0.5)
+                        .build();
+                robot.followTrajectorySequence(trajSeq);
+                currentState = State.ARM_PICK_UP;
+            case ARM_PICK_UP:
+                arm.onlyHoldPixel();
+                trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(0.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
@@ -71,7 +79,7 @@ public class RedRight extends OpMode {
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(2)
-                        .forward(4)
+                        .forward(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(48, -37, Math.toRadians(0));

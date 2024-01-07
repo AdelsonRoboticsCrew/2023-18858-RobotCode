@@ -13,6 +13,7 @@ public class Arm {
     private double SERVO_HOLD = 0.5;
     private final double SERVO_DROP = 0.655;
     private final int ARM_DRIVE = 80;
+    private final int ARM_LIGHT_LIFT = 32;
     private final int ARM_TURN_PLACE = 210;
     public final int ARM_TURN_PLACE_HIGHER = 270;
     public final int ARM_HANG = 400;
@@ -44,6 +45,10 @@ public class Arm {
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armTurn.setPower(.65);
     }
+
+    public void onlyHoldPixel(){
+        claw.setPosition(SERVO_HOLD);
+    }
     public void dropPixel(){
         claw.setPosition(SERVO_DROP);
     }
@@ -54,6 +59,12 @@ public class Arm {
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armTurn.setPower(0.7);
         armLift.setPower(0.7);
+    }
+
+    public void raiseArmForPixel(){
+        armLift.setTargetPosition(ARM_LIGHT_LIFT);
+        armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armLift.setPower(1);
     }
     public void dropArm(){
         armLift.setTargetPosition(0);
