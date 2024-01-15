@@ -48,7 +48,7 @@ public class RedLeft extends OpMode {
         robot.update();
         switch (currentState){
             case ARM_PICK_UP:
-                arm.holdPixel();
+                arm.onlyHoldPixel();
                 TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(0.5)
                         .build();
@@ -58,8 +58,10 @@ public class RedLeft extends OpMode {
                 break;
             case DRIVE_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .forward(24)
+                        .forward(25)
+                        .waitSeconds(1)
                         .strafeRight(78)
+                        .waitSeconds(1)
                         .turn(Math.toRadians(-90))
                         .build();
                 robot.followTrajectorySequence(trajSeq);

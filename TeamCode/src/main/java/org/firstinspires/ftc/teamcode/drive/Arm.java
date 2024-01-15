@@ -13,7 +13,7 @@ public class Arm {
     private double SERVO_HOLD = 0.5;
     private final double SERVO_DROP = 0.655;
     private final int ARM_DRIVE = 80;
-    private final int ARM_LIGHT_LIFT = 32;
+    private final int ARM_LIGHT_LIFT = 40;
     private final int ARM_TURN_PLACE = 210;
     public final int ARM_TURN_PLACE_HIGHER = 270;
     public final int ARM_HANG = 400;

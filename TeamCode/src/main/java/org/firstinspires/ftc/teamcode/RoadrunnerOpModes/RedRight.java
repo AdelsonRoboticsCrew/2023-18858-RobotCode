@@ -29,7 +29,7 @@ public class RedRight extends OpMode {
         arm = new Arm(hardwareMap);
         currentPose = new Pose2d(11, -62, Math.toRadians(90));
         robot.setPoseEstimate(currentPose);
-        currentState = State.ARM_LIFT_A;
+        currentState = State.ARM_PICK_UP;
     }
     @Override
     public void init_loop(){
@@ -41,16 +41,16 @@ public class RedRight extends OpMode {
     public void loop(){
         robot.update();
         switch (currentState){
-            case ARM_LIFT_A:
+            /*case ARM_LIFT_A:
                 arm.raiseArmForPixel();
                 TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(0.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentState = State.ARM_PICK_UP;
+                currentState = State.ARM_PICK_UP; */
             case ARM_PICK_UP:
                 arm.onlyHoldPixel();
-                trajSeq = robot.trajectorySequenceBuilder(currentPose)
+                TrajectorySequence trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(0.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);

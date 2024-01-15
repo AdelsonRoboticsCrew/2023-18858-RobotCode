@@ -15,7 +15,7 @@ public class Teleop extends OpMode {
     DcMotor rightBack;
     DcMotor armLift;
     DcMotor armTurn;
-    DcMotor airplane;
+    //DcMotor airplane;
 
     Servo claw;
     boolean lastPressed = false;
@@ -30,7 +30,7 @@ public class Teleop extends OpMode {
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
         claw = hardwareMap.get(Servo.class, "claw");
-        airplane = hardwareMap.get(DcMotor.class, "drone");
+        //airplane = hardwareMap.get(DcMotor.class, "drone");
 
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
@@ -113,7 +113,7 @@ public class Teleop extends OpMode {
             armLift.setPower(1);
         }
         if (gamepad1.a) {
-            armTurn.setTargetPosition(32);
+            armTurn.setTargetPosition(25);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.15);
         }
@@ -144,7 +144,7 @@ public class Teleop extends OpMode {
         if (gamepad1.left_bumper) {
             claw.setPosition(.5);
         }
-
+/*
         if(gamepad1.right_stick_button && !lastPressed){
             airplane.setPower(0.4);
             lastPressed = true;
@@ -154,7 +154,7 @@ public class Teleop extends OpMode {
             airplane.setPower(0);
             lastPressed = false;
         }
-
+*/
         telemetry.update();
     }
 
