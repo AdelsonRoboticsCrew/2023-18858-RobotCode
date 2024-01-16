@@ -28,7 +28,7 @@ public class RedLeft extends OpMode {
     public void init() {
         robot = new SampleMecanumDrive(hardwareMap);
         arm = new Arm(hardwareMap);
-        currentPose = new Pose2d(-34, 62, Math.toRadians(270));
+        currentPose = new Pose2d(-34, -62, Math.toRadians(90));
         robot.setPoseEstimate(currentPose);
         currentState = State.ARM_PICK_UP;
     }
@@ -53,15 +53,15 @@ public class RedLeft extends OpMode {
                         .waitSeconds(0.5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                telemetry.addData("debug 1", currentState);
+                //telemetry.addData("debug 1", currentState);
                 currentState = State.DRIVE_1;
                 break;
             case DRIVE_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .forward(25)
-                        .waitSeconds(1)
+                        .forward(58)
+                        //.waitSeconds(1)
                         .strafeRight(78)
-                        .waitSeconds(1)
+                        //.waitSeconds(1)
                         .turn(Math.toRadians(-90))
                         .build();
                 robot.followTrajectorySequence(trajSeq);
@@ -82,8 +82,9 @@ public class RedLeft extends OpMode {
                 currentState = State.FORWARD_1;*/
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(2)
-                        .forward(10)
+                        .strafeRight(30)
+                        .waitSeconds(1.5)
+                        .forward(4)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(48, -35, Math.toRadians(0));
@@ -94,7 +95,7 @@ public class RedLeft extends OpMode {
             case ARM_DROP:
                 arm.claw.setPosition(0.655);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(1.5)
+                        .waitSeconds(0.5)
                         .back(4)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
