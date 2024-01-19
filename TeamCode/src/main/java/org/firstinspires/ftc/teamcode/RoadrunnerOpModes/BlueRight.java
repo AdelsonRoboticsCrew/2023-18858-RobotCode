@@ -61,7 +61,6 @@ public class BlueRight extends OpMode {
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(58)
                         .waitSeconds(1)
-                        .back(3)//in case robot grabs prop when initialized middle/2
                         .strafeLeft(78)
                         .turn(Math.toRadians(90))
                         .build();
@@ -85,10 +84,10 @@ public class BlueRight extends OpMode {
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .strafeLeft(30)
                         .waitSeconds(1.5)
-                        .forward(4)
+                        .forward(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(48, 37, Math.toRadians(0));
+                currentPose = new Pose2d(50, 37, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.ARM_DROP;
@@ -97,7 +96,7 @@ public class BlueRight extends OpMode {
                 arm.claw.setPosition(0.655);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(0.5)
-                        .back(4)
+                        .back(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(44, 37, Math.toRadians(0));

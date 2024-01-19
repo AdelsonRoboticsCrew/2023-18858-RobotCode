@@ -60,13 +60,13 @@ public class RedLeft extends OpMode {
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(58)
                         .waitSeconds(1)
-                        .back(3)//in case robot grabs prop when initialized middle/2
+                        //.back(3)//in case robot grabs prop when initialized middle/2
                         .strafeRight(78)
                         //.waitSeconds(1)
                         .turn(Math.toRadians(-90))
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(44, -7, Math.toRadians(0));
+                currentPose = new Pose2d(44, -10, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 arm.raiseArmAuto();
@@ -83,12 +83,12 @@ public class RedLeft extends OpMode {
                 currentState = State.FORWARD_1;*/
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .strafeRight(30)
+                        .strafeRight(35)
                         .waitSeconds(1.5)
-                        .forward(4)
+                        .forward(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(48, -37, Math.toRadians(0));
+                currentPose = new Pose2d(55, -40, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.ARM_DROP;
@@ -97,10 +97,10 @@ public class RedLeft extends OpMode {
                 arm.claw.setPosition(0.655);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(0.5)
-                        .back(4)
+                        .back(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(44, -37, Math.toRadians(0));
+                currentPose = new Pose2d(49, -40, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.PARK;
@@ -113,7 +113,7 @@ public class RedLeft extends OpMode {
                         .back(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(50, -11, Math.toRadians(-90));
+                currentPose = new Pose2d(55, -11, Math.toRadians(-90));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.OFF;

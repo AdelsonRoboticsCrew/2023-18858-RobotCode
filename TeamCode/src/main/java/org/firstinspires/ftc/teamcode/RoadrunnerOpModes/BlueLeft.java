@@ -60,8 +60,8 @@ public class BlueLeft extends OpMode {
                 arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(25)
-                        .strafeLeft(33)
                         .turn(Math.toRadians(90))
+                        .forward(33)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(44, 37, Math.toRadians(0));
@@ -80,7 +80,7 @@ public class BlueLeft extends OpMode {
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(2)
-                        .forward(4)
+                        .forward(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(48, 37, Math.toRadians(0));
@@ -92,10 +92,10 @@ public class BlueLeft extends OpMode {
                 arm.claw.setPosition(0.7);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(1.5)
-                        .back(4)
+                        .back(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(44, 37, Math.toRadians(0));
+                currentPose = new Pose2d(42, 37, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.PARK;
