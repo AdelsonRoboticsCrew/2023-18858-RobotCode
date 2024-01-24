@@ -63,20 +63,20 @@ public class RedRightTwoPixels extends OpMode{
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(3)
                         .turn(Math.toRadians(-45))
-                        .forward(30)
+                        .forward(35)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(26, -44, Math.toRadians(45));
+                currentPose = new Pose2d(28.5, -37.5, Math.toRadians(45));
                 currentState = State.TURN_2;
                 break;
             case TURN_2:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(2)
                         .turn(Math.toRadians(-45))
-                        .forward(15)
+                        .forward(10)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(41, -44, Math.toRadians(0));
+                currentPose = new Pose2d(38.5, -37.5, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.FORWARD_1;
@@ -103,10 +103,10 @@ public class RedRightTwoPixels extends OpMode{
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(2)
-                        .forward(8.5)
+                        .forward(10)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(49.5, -44, Math.toRadians(0));
+                currentPose = new Pose2d(48.5, -37.5, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.ARM_DROP;
@@ -115,10 +115,10 @@ public class RedRightTwoPixels extends OpMode{
                 arm.claw.setPosition(0.7);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(1.5)
-                        .back(8.5)
+                        .back(10)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(41, -44, Math.toRadians(0));
+                currentPose = new Pose2d(38.5, -37.5, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.PARK;
@@ -131,7 +131,7 @@ public class RedRightTwoPixels extends OpMode{
                         .back(6)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(35, -16, Math.toRadians(-90));
+                currentPose = new Pose2d(32.5, -9.5, Math.toRadians(-90));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.OFF;
