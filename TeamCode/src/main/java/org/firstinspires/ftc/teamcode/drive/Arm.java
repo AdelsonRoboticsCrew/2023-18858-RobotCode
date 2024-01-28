@@ -66,6 +66,13 @@ public class Arm {
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armLift.setPower(1);
     }
+    public  void fullyDropArm()
+    {
+        armTurn.setTargetPosition(0);
+        armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armTurn.setPower(.65);
+        claw.setPosition(SERVO_HOLD);
+    }
     public void dropArm(){
         armLift.setTargetPosition(0);
         armTurn.setTargetPosition(ARM_DRIVE);
