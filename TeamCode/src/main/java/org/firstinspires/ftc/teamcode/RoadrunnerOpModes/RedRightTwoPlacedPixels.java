@@ -20,7 +20,8 @@ public class RedRightTwoPlacedPixels extends OpMode{
         FORWARD_1,
         ARM_DROP,
         TURN_AROUND,
-        PICK_UP,
+        PICK_UP1,
+        PICK_UP2,
         SECOND_PLACE,
         DROP_SECOND,
         PARK,
@@ -68,11 +69,10 @@ public class RedRightTwoPlacedPixels extends OpMode{
                 arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .forward(25)
-                        .back(20)
-                        .strafeRight(33)
-                        .forward(25)
+                        .back(5)
+                        .strafeRight(34)
                         .turn(Math.toRadians(-90))
-                        .forward(6)
+                        .forward(7)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(44, -32, Math.toRadians(0));
@@ -89,11 +89,10 @@ public class RedRightTwoPlacedPixels extends OpMode{
                 currentState = State.FORWARD_1;*/
             case FORWARD_1:
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(2)
-                        .forward(4)
+                        .waitSeconds(1)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(48, -32, Math.toRadians(0));
+                currentPose = new Pose2d(47, -32, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.ARM_DROP;
@@ -101,73 +100,80 @@ public class RedRightTwoPlacedPixels extends OpMode{
             case ARM_DROP:
                 arm.claw.setPosition(0.7);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(2)
                         .back(5)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
                 currentPose = new Pose2d(43, -32, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
-                currentState = State.TURN_AROUND;
+                 currentState = State.TURN_AROUND;
                 break;
             case TURN_AROUND:
                 arm.dropArm();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(2)
                         .turn(Math.toRadians(180))
-                        .strafeRight(4)
-                        .forward(32)
+                        .strafeRight(13)
+                        .forward(28)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(11, -28, Math.toRadians(180));
+                currentPose = new Pose2d(12, -28, Math.toRadians(180));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
-                currentState = State.PICK_UP;
+                currentState = State.PICK_UP1;
                 break;
-            case PICK_UP:
+            case PICK_UP1:
                 arm.fullyDropArm();
-                arm.armDrive();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
                         .waitSeconds(1)
-                        .back(10)
-                        .turn(Math.toRadians(180))
-                        .forward(25)
-                        .strafeRight(10) //57 -38
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(48, -38, Math.toRadians(0));
+                currentPose = new Pose2d(12, -28, Math.toRadians(180));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
-                currentState = State.SECOND_PLACE;
+                currentState = State.PICK_UP2;
                 break;
-            case SECOND_PLACE:
+            case PICK_UP2:
                 arm.raiseArmAuto();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .waitSeconds(1).build();
+                        .waitSeconds(1)
+                        .back(25)
+                        .turn(Math.toRadians(180))
+                        .forward(9)
+                        .strafeRight(7) //57 -38
+                        .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(48, -38, Math.toRadians(0));
+                currentPose = new Pose2d(47, -38, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.DROP_SECOND;
+                break;
+            /*case SECOND_PLACE:
+                arm.raiseArmAuto();
+                trajSeq = robot.trajectorySequenceBuilder(currentPose)
+                        .waitSeconds(3).build();
+                robot.followTrajectorySequence(trajSeq);
+                currentPose = new Pose2d(48, -38, Math.toRadians(0));
+                robot.setPoseEstimate(currentPose);
+                robot.updatePoseEstimate();
+                currentState = State.DROP_SECOND; */
             case DROP_SECOND:
                 arm.claw.setPosition(0.7);
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .back(5)
+                        .waitSeconds(2)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(43, -38, Math.toRadians(0));
+                currentPose = new Pose2d(42, -38, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.DROP_SECOND;
             case PARK:
                 arm.dropArm();
                 trajSeq = robot.trajectorySequenceBuilder(currentPose)
-                        .strafeLeft(28)
-                        .turn(Math.toRadians(180))
-                        .back(7)
+                        .back(3)
                         .build();
                 robot.followTrajectorySequence(trajSeq);
-                currentPose = new Pose2d(50, -10, Math.toRadians(-90));
+                currentPose = new Pose2d(39, -38, Math.toRadians(0));
                 robot.setPoseEstimate(currentPose);
                 robot.updatePoseEstimate();
                 currentState = State.OFF;
