@@ -14,7 +14,11 @@ public class MeepMeepRedRight {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(11, -62, Math.toRadians(90)))
                                 .waitSeconds(0.5)
-                                .forward(25)
+                                .forward(20)
+                                .turn(Math.toRadians(45))
+                                .forward(5)
+                                .back(5)
+                              /*  .forward(10)
                                 .back(20)
                                 .strafeRight(33)
                                 .forward(25)
@@ -34,7 +38,7 @@ public class MeepMeepRedRight {
                                 .back(5)
                                 .strafeLeft(28)
                                 .turn(Math.toRadians(180))
-                                .back(7)
+                                .back(7) */
                                 .build()
                 );
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
