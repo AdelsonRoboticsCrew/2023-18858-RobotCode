@@ -32,8 +32,8 @@ public class whatifyouwokeupblue extends OpenCvPipeline{
     @Override
     public Mat processFrame(Mat input){
         Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV);
-        Scalar lowHSV = new Scalar(12, 12, 127); //min blue
-        Scalar highHSV = new Scalar (0, 0, 255); //max blue (aka pure)
+        Scalar lowHSV = new Scalar(40, 40, 127); //min blue
+        Scalar highHSV = new Scalar (133, 176, 190); //max blue (aka pure)
         /*
 
          */
