@@ -20,7 +20,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
 @Autonomous(group = "robot")
-public class RedRight extends OpMode {
+public class RedRight extends OpMode{
 
     WebcamName webcamName;
     private enum State {
@@ -56,7 +56,7 @@ public class RedRight extends OpMode {
         arm = new Arm(hardwareMap);
         currentPose = new Pose2d(11, -62, Math.toRadians(90));
         robot.setPoseEstimate(currentPose);
-        currentState = State.ARM_PICK_UP;
+
         webcam = OpenCvCameraFactory.getInstance().createWebcam(webcamName);//, cameraMonitorViewId);
 
         webcam.setPipeline(detector);
@@ -65,12 +65,13 @@ public class RedRight extends OpMode {
             @Override
             public void onOpened()
             {
-                webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                webcam.startStreaming(352, 288, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
             public void onError(int errorCode) {
-
+                telemetry.addData("Camera Failed","");
+                telemetry.update();
             }
 
 
@@ -92,7 +93,7 @@ public class RedRight extends OpMode {
         updateTelemetry(telemetry);
     }
     @Override
-    public void start(){ webcam.stopStreaming();}
+    public void start() { webcam.stopStreaming();}
     @Override
     public void loop(){
         robot.update();
