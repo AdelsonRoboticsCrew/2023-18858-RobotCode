@@ -19,18 +19,18 @@ public class whatifyouwokeupdetector extends OpenCvPipeline{
     }
     private Location location;
     static final Rect LEFT_ROI = new Rect(
-           new Point(150, 180),
-            new Point(210, 227)
+           new Point(170, 190),
+            new Point(230, 237)
             //new Point(100, 100),
             //new Point(240, 320)
     );
     static final Rect RIGHT_ROI = new Rect(
-            new Point(270, 200),
-            new Point(330, 248)
+            new Point(290, 200),
+            new Point(350, 248)
             //new Point(100, 100),
             //new Point(240, 320)
     );
-    static double PERCENT_COLOR_THRESHOLD = 0.03;
+    static double PERCENT_COLOR_THRESHOLD = 0.01;
     public whatifyouwokeupdetector(Telemetry t) {telemetry = t;}
 
     @Override

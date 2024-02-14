@@ -53,7 +53,7 @@ public class Arm {
         claw.setPosition(SERVO_DROP);
     }
     public void raiseArmAuto(){
-        armTurn.setTargetPosition(ARM_TURN_PLACE);
+        armTurn.setTargetPosition(200);
         armLift.setTargetPosition(ARM_HEIGHT_PLACE_TALL);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);

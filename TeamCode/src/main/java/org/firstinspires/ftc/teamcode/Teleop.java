@@ -128,7 +128,7 @@ public class Teleop extends OpMode {
             armTurn.setPower(0.15);
         }
         if (gamepad1.x) {
-            armTurn.setTargetPosition(230);
+            armTurn.setTargetPosition(210);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.4);
         }

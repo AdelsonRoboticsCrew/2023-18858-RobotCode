@@ -31,7 +31,7 @@ public class youwokeupblue extends LinearOpMode {
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
-                webcam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                webcam.startStreaming(352, 288, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override

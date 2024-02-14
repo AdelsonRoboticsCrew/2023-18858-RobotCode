@@ -18,22 +18,24 @@ public class whatifyouwokeupblue extends OpenCvPipeline{
         NONE
     }
     private org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location location;
-    static final Rect LEFT_ROI = new Rect(
-            new Point(130, 147),
-            new Point(190, 187)
+    static final Rect LEFT_ROI = new Rect( //mid
+            new Point(180, 180),
+            new Point(240, 227)
     );
-    static final Rect RIGHT_ROI = new Rect(
-            new Point(230, 148),
-            new Point(290, 188)
+    static final Rect RIGHT_ROI = new Rect( //left
+            //new Point(270, 200),
+            //new Point(330, 248)
+            new Point(40, 200),
+            new Point(120, 248)
     );
-    static double PERCENT_COLOR_THRESHOLD = 0.01;
+    static double PERCENT_COLOR_THRESHOLD = 0.05;
     public whatifyouwokeupblue(Telemetry t) {telemetry = t;}
 
     @Override
     public Mat processFrame(Mat input){
         Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV);
-        Scalar lowHSV = new Scalar(40, 40, 127); //min blue
-        Scalar highHSV = new Scalar (133, 176, 190); //max blue (aka pure)
+        Scalar lowHSV = new Scalar(106, 127, 15); //min blue
+        Scalar highHSV = new Scalar (111, 245, 255); //max blue (aka pure)
         /*
 
          */
@@ -65,13 +67,13 @@ public class whatifyouwokeupblue extends OpenCvPipeline{
         }
         else if(propRight){
             //right
-            location = org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.RIGHT;
-            telemetry.addData("Prop Location: ", "right");
+            location = org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.LEFT;
+            telemetry.addData("Prop Location: ", "left");
         }
         else{
             //left
-            location = org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.LEFT;
-            telemetry.addData("Prop Location: ", "left");
+            location = org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.RIGHT ;
+            telemetry.addData("Prop Location: ", "right");
         }
         telemetry.update();
 
@@ -82,7 +84,7 @@ public class whatifyouwokeupblue extends OpenCvPipeline{
         Scalar colorProp = new Scalar(0, 255, 0);
 
         Imgproc.rectangle(mat, LEFT_ROI, location == org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.MIDDLE? colorProp:colorSomething);
-        Imgproc.rectangle(mat, RIGHT_ROI, location == org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.RIGHT? colorProp:colorSomething);
+        Imgproc.rectangle(mat, RIGHT_ROI, location == org.firstinspires.ftc.teamcode.opencvvvv.whatifyouwokeupdetector.Location.LEFT? colorProp:colorSomething);
         //Questionable section end
 
         return mat;
