@@ -17,7 +17,7 @@ public class Teleop extends OpMode {
     DcMotor armTurn;
     //DcMotor airplane;
     Servo leftClaw; //rev servo goes from 0 - 1
-    Servo rightClaw; //rev servo goes from 0 - 1
+   // Servo rightClaw; //rev servo goes from 0 - 1
     Servo clawTurn; //axon servo goes from idk - idk
     //Servo claw; this was used for the old iteration of the claw
     boolean lastPressed = false;
@@ -31,7 +31,7 @@ public class Teleop extends OpMode {
         rightFront = hardwareMap.get(DcMotor.class, "right front");
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
-        rightClaw = hardwareMap.get(Servo.class, "right claw");
+        //rightClaw = hardwareMap.get(Servo.class, "right claw");
         leftClaw = hardwareMap.get(Servo.class, "left claw");
         clawTurn = hardwareMap.get(Servo.class, "claw turn");
         //claw = hardwareMap.get(Servo.class, "claw");
@@ -165,27 +165,27 @@ public class Teleop extends OpMode {
         //code second gamepad!!!
 
         if(gamepad2.left_bumper){
-            rightClaw.setPosition(0.5);
+            //rightClaw.setPosition(0.5);
             leftClaw.setPosition(0.5);
         }
 
         if(gamepad2.right_bumper){
-            rightClaw.setPosition(0.655);
+            //rightClaw.setPosition(0.655);
             leftClaw.setPosition(0.655);
         }
-        if(gamepad2.a){
-            rightClaw.setPosition(0.655);
+        if(gamepad2.y){
+            //rightClaw.setPosition(0.655);
+        }
+
+        if(gamepad2.x){
+            leftClaw.setPosition(0.45);
         }
 
         if(gamepad2.b){
-            leftClaw.setPosition(0.655);
+           // rightClaw.setPosition(0.5);
         }
-
-        if(gamepad2.y){
-            rightClaw.setPosition(0.5);
-        }
-        if(gamepad2.x){
-            leftClaw.setPosition(0.5);
+        if(gamepad2.a){
+            leftClaw.setPosition(0.48);
         }
         if(gamepad2.dpad_up){
             clawTurn.setPosition(0.3);
