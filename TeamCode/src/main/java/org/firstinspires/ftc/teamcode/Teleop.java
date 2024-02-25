@@ -17,7 +17,7 @@ public class Teleop extends OpMode {
     DcMotor armTurn;
     //DcMotor airplane;
     Servo leftClaw; //rev servo goes from 0 - 1
-   // Servo rightClaw; //rev servo goes from 0 - 1
+   Servo rightClaw; //rev servo goes from 0 - 1
     Servo clawTurn; //axon servo goes from idk - idk
     //Servo claw; this was used for the old iteration of the claw
     boolean lastPressed = false;
@@ -31,7 +31,7 @@ public class Teleop extends OpMode {
         rightFront = hardwareMap.get(DcMotor.class, "right front");
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
-        //rightClaw = hardwareMap.get(Servo.class, "right claw");
+        rightClaw = hardwareMap.get(Servo.class, "right claw");
         leftClaw = hardwareMap.get(Servo.class, "left claw");
         clawTurn = hardwareMap.get(Servo.class, "claw turn");
         //claw = hardwareMap.get(Servo.class, "claw");
@@ -43,6 +43,7 @@ public class Teleop extends OpMode {
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         armLift.setDirection(DcMotor.Direction.FORWARD);
         armTurn.setDirection(DcMotor.Direction.REVERSE);
+        leftClaw.setDirection(Servo.Direction.REVERSE);
 
         armLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armLift.setTargetPosition(0);
@@ -165,16 +166,16 @@ public class Teleop extends OpMode {
         //code second gamepad!!!
 
         if(gamepad2.left_bumper){
-            //rightClaw.setPosition(0.5);
-            leftClaw.setPosition(0.5);
+            rightClaw.setPosition(0.4);
+            leftClaw.setPosition(0.4);
         }
 
         if(gamepad2.right_bumper){
-            //rightClaw.setPosition(0.655);
-            leftClaw.setPosition(0.655);
+            rightClaw.setPosition(0.8);
+            leftClaw.setPosition(0.8);
         }
         if(gamepad2.y){
-            //rightClaw.setPosition(0.655);
+            rightClaw.setPosition(0.655);
         }
 
         if(gamepad2.x){
@@ -182,29 +183,18 @@ public class Teleop extends OpMode {
         }
 
         if(gamepad2.b){
-           // rightClaw.setPosition(0.5);
+           rightClaw.setPosition(0.5);
         }
         if(gamepad2.a){
             leftClaw.setPosition(0.48);
         }
         if(gamepad2.dpad_up){
-            clawTurn.setPosition(0.3);
+            clawTurn.setPosition(-5);
         }
 
         if(gamepad2.dpad_down){
-            clawTurn.setPosition(0.6);
+            clawTurn.setPosition(-3);
         }
-
-        if(gamepad2.left_stick_button){
-            armTurn.setTargetPosition(400);
-            armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armTurn.setPower(0.4);
-
-        }
-
-       /* if(gamepad2.right_stick_button){
-            insert drone thing
-        } */
         if (armTurn.getCurrentPosition() == 0) {
             armTurn.setPower(0);
         }
