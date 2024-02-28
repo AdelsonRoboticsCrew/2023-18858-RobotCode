@@ -165,35 +165,41 @@ public class Teleop extends OpMode {
 
         //code second gamepad!!!
 
+        if(gamepad2.right_stick_button){
+            armTurn.setTargetPosition(450);
+            armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armTurn.setPower(0.4);
+        }
+
         if(gamepad2.left_bumper){
             rightClaw.setPosition(0.4);
             leftClaw.setPosition(0.4);
         }
 
         if(gamepad2.right_bumper){
-            rightClaw.setPosition(0.8);
-            leftClaw.setPosition(0.8);
+            rightClaw.setPosition(1);
+            leftClaw.setPosition(1);
         }
         if(gamepad2.y){
-            rightClaw.setPosition(0.655);
+            rightClaw.setPosition(0.4);
         }
 
         if(gamepad2.x){
-            leftClaw.setPosition(0.45);
+            leftClaw.setPosition(0.4);
         }
 
         if(gamepad2.b){
-           rightClaw.setPosition(0.5);
+           rightClaw.setPosition(1);
         }
         if(gamepad2.a){
-            leftClaw.setPosition(0.48);
+            leftClaw.setPosition(1);
         }
         if(gamepad2.dpad_up){
-            clawTurn.setPosition(-5);
+            clawTurn.setPosition(1);
         }
 
         if(gamepad2.dpad_down){
-            clawTurn.setPosition(-3);
+            clawTurn.setPosition(.9);
         }
         if (armTurn.getCurrentPosition() == 0) {
             armTurn.setPower(0);
