@@ -45,7 +45,7 @@ public class Teleop extends OpMode {
         armTurn.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armTurn.setTargetPosition(0);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        claw.setPosition(0);
+        claw.setPosition(1);
         setMotorFloatAndZero();
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
@@ -134,10 +134,10 @@ public class Teleop extends OpMode {
             armLift.setPower(0);
         }
         if (gamepad1.right_bumper) {
-            claw.setPosition(0);
+            claw.setPosition(1);
         }
         if (gamepad1.left_bumper) {
-            claw.setPosition(-0.5);
+            claw.setPosition(0.5);
         }
         if(gamepad1.right_stick_button){
             //airplane.setPosition(0);

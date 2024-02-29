@@ -62,7 +62,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Encoder Drive Backup", group="Robot")
+@Autonomous(name="Encoder Drive Backup red", group="Robot")
 @Disabled
 public class BackupEncoderDriveAutoRed extends LinearOpMode {
 
