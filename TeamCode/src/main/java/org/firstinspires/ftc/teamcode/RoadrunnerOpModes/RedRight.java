@@ -19,14 +19,14 @@ public class RedRight extends OpMode {
         OFF
     }
     private SampleMecanumDrive robot;
-    private Arm arm;
+    //private Arm arm;
     private State currentState;
     private Pose2d currentPose;
 
     @Override
     public void init(){
         robot = new SampleMecanumDrive(hardwareMap);
-        arm = new Arm(hardwareMap);
+        //arm = new Arm(hardwareMap);
         currentPose = new Pose2d(11, -62, Math.toRadians(90));
         robot.setPoseEstimate(currentPose);
         currentState = State.ARM_PICK_UP;
