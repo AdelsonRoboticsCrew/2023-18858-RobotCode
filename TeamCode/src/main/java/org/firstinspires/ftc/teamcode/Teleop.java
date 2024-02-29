@@ -4,8 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.teamcode.drive.Arm;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+
 
 @TeleOp(name="Base Teleop", group="Robot")
 public class Teleop extends OpMode {
@@ -16,8 +15,8 @@ public class Teleop extends OpMode {
     DcMotor armLift;
     DcMotor armTurn;
     //DcMotor airplane;
-
     Servo claw;
+    //Servo airplane;
     boolean lastPressed = false;
 
     @Override
@@ -30,7 +29,7 @@ public class Teleop extends OpMode {
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
         claw = hardwareMap.get(Servo.class, "claw");
-        //airplane = hardwareMap.get(DcMotor.class, "drone");
+        //airplane = hardwareMap.get(Servo.class, "drone");
 
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
@@ -39,15 +38,15 @@ public class Teleop extends OpMode {
         armLift.setDirection(DcMotor.Direction.FORWARD);
         armTurn.setDirection(DcMotor.Direction.REVERSE);
 
+
         armLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armLift.setTargetPosition(0);
         armLift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armTurn.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armTurn.setTargetPosition(0);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        claw.setPosition(1);
         setMotorFloatAndZero();
-
-
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
     }
@@ -74,16 +73,12 @@ public class Teleop extends OpMode {
         double rfPow = drive - strafe - turn;
 
         double divisor = Math.max(Math.max(lfPow, lbPow), Math.max(rfPow, rbPow));
-        if (divisor >= 0.8) {
+        if (divisor >= 1) {
             lbPow /= divisor;
             rbPow /= divisor;
             lfPow /= divisor;
             rfPow /= divisor;
         }
-        lbPow *= 0.8;
-        lfPow *= 0.8;
-        rbPow *= 0.8;
-        rfPow *= 0.8;
         leftFront.setPower(lfPow);
         leftBack.setPower(lbPow);
         rightFront.setPower(rfPow);
@@ -125,10 +120,10 @@ public class Teleop extends OpMode {
         if (gamepad1.b) {
             armTurn.setTargetPosition(80);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armTurn.setPower(0.15);
+            armTurn.setPower(0.2);
         }
         if (gamepad1.x) {
-            armTurn.setTargetPosition(210);
+            armTurn.setTargetPosition(225);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.4);
         }
@@ -139,22 +134,14 @@ public class Teleop extends OpMode {
             armLift.setPower(0);
         }
         if (gamepad1.right_bumper) {
-            claw.setPosition(.655);
+            claw.setPosition(1);
         }
         if (gamepad1.left_bumper) {
-            claw.setPosition(.5);
+            claw.setPosition(0.5);
         }
-/*
-        if(gamepad1.right_stick_button && !lastPressed){
-            airplane.setPower(0.4);
-            lastPressed = true;
+        if(gamepad1.right_stick_button){
+            //airplane.setPosition(0);
         }
-
-        if(gamepad1.right_stick_button && lastPressed){
-            airplane.setPower(0);
-            lastPressed = false;
-        }
-*/
         telemetry.update();
     }
 

@@ -11,7 +11,7 @@ public class Arm {
     public final int ARM_HEIGHT_PLACE_MEDIUM = 1250;
     public final int ARM_HEIGHT_PLACE_SHORT = 600;
     private double SERVO_HOLD = 0.5;
-    private final double SERVO_DROP = 0.655;
+    private final double SERVO_DROP = 1;
     private final int ARM_DRIVE = 80;
     private final int ARM_LIGHT_LIFT = 40;
     private final int ARM_TURN_PLACE = 210;
