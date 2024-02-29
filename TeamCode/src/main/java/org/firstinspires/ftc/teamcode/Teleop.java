@@ -4,8 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.teamcode.drive.Arm;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+
 
 @TeleOp(name="Base Teleop", group="Robot")
 public class Teleop extends OpMode {
@@ -17,7 +16,7 @@ public class Teleop extends OpMode {
     DcMotor armTurn;
     //DcMotor airplane;
     Servo claw;
-    Servo airplane;
+    //Servo airplane;
     boolean lastPressed = false;
 
     @Override
@@ -30,7 +29,7 @@ public class Teleop extends OpMode {
         armLift = hardwareMap.get(DcMotor.class, "arm lift");
         armTurn = hardwareMap.get(DcMotor.class, "arm turn");
         claw = hardwareMap.get(Servo.class, "claw");
-        airplane = hardwareMap.get(Servo.class, "drone");
+        //airplane = hardwareMap.get(Servo.class, "drone");
 
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
@@ -46,6 +45,7 @@ public class Teleop extends OpMode {
         armTurn.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armTurn.setTargetPosition(0);
         armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        claw.setPosition(0);
         setMotorFloatAndZero();
         telemetry.addData("Status", "Ready to run");
         telemetry.update();
@@ -123,7 +123,7 @@ public class Teleop extends OpMode {
             armTurn.setPower(0.2);
         }
         if (gamepad1.x) {
-            armTurn.setTargetPosition(230);
+            armTurn.setTargetPosition(225);
             armTurn.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armTurn.setPower(0.4);
         }
@@ -134,13 +134,13 @@ public class Teleop extends OpMode {
             armLift.setPower(0);
         }
         if (gamepad1.right_bumper) {
-            claw.setPosition(.5);
-        }
-        if (gamepad1.left_bumper) {
             claw.setPosition(0);
         }
+        if (gamepad1.left_bumper) {
+            claw.setPosition(-0.5);
+        }
         if(gamepad1.right_stick_button){
-            airplane.setPosition(0);
+            //airplane.setPosition(0);
         }
         telemetry.update();
     }
